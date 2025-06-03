@@ -16,12 +16,29 @@ export const signup = createAsyncThunk(
             })
             const userDoc = await getDoc(doc(db, "users", response.user.uid));
             if (userDoc.exists()) {
-                return userDoc.data(); 
+                return userDoc.data();
             } else {
                 return rejectWithValue("User data not found in Firestore");
             }
         }
         catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+)
+export const login = createAsyncThunk(
+    'auth/login',
+    async (userData, { rejectWithValue }) => {
+        try {
+            const response = await signInWithEmailAndPassword(auth, userData.email, userData.password)
+            const user = response.user
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                return userDoc.data();
+            } else {
+                return rejectWithValue("User data not found in Firestore");
+            }
+        } catch (error) {
             return rejectWithValue(error.message)
         }
     }
@@ -45,6 +62,19 @@ export const authSlice = createSlice({
                 state.isAuthenticated = true
             })
             .addCase(signup.rejected, (state, action) => {
+                state.isloading = false
+                state.error = action.payload
+            })
+            .addCase(login.pending, (state) => {
+                state.isloading = false
+                state.isAuthenticated = false
+            })
+            .addCase(login.fulfilled, (state, action) => {
+                state.isloading = true
+                state.user = action.payload
+                state.isAuthenticated = true
+            })
+            .addCase(login.rejected, (state, action) => {
                 state.isloading = false
                 state.error = action.payload
             })

@@ -56,16 +56,16 @@ export default function Signup() {
       <form onSubmit={handleSubmit} className='bg-white p-6 rounded shadow-lg w-full max-w-sm'>
         <h1 className='text-lg font-bold text-center mb-4'>Signup form</h1>
         <label className='block mb-2'>Full Name</label>
-        <input className='border mb-3 w-full p-2 rounded' type='text' placeholder='Enter Name' value={data.fullName} onChange={(e) => setData({ ...data, fullName: e.target.value })} required />
+        <input className='bg-gray-50 border mb-3 w-full p-2 rounded' type='text' placeholder='Enter Name' value={data.fullName} onChange={(e) => setData({ ...data, fullName: e.target.value })} required />
         <label className='block mb-2'>Email</label>
-        <input className='border mb-3 w-full p-2 rounded' type='email' placeholder='Enter Email' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} required />
+        <input className='bg-gray-50 border mb-3 w-full p-2 rounded' type='email' placeholder='Enter Email' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} required />
         <label className='block mb-2'>Password</label>
-        <input className='border mb-3 w-full p-2 rounded' type='password' placeholder='Enter Password' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} required />
+        <input className='bg-gray-50 border mb-3 w-full p-2 rounded' type='password' placeholder='Enter Password' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} required />
         <label className='block mb-2'>Confirm Password</label>
-        <input className='border mb-3 w-full p-2 rounded' type='password' placeholder='Enter Confirm Password' value={data.confirmPassword} onChange={(e) => setData({ ...data, confirmPassword: e.target.value })} required />
+        <input className=' bg-gray-50 border mb-3 w-full p-2 rounded' type='password' placeholder='Enter Confirm Password' value={data.confirmPassword} onChange={(e) => setData({ ...data, confirmPassword: e.target.value })} required />
         <label className='block'>Role</label>
         <select 
-        className="border mb-3 w-full p-2 rounded"
+        className="bg-gray-50 border mb-3 w-full p-2 rounded"
           value={data.role}
           onChange={(e)=>setData({...data,role:e.target.value})}
           required
@@ -75,7 +75,7 @@ export default function Signup() {
           <option value="admin">Admin</option>
         </select>
         <button className='bg-green-400 w-full mt-3 rounded p-2 text-white hover:bg-green-300'>Submit</button>
-        <p className='text-center mt-3 '>Already have account <Link to="/login" className='text-blue-600'>Login</Link></p>
+        <p className='text-center mt-3 '>Already have an account <Link to="/login" className='text-blue-600'>Login Now</Link></p>
       </form>
     </div>
   )
