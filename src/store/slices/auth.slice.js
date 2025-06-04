@@ -1,5 +1,5 @@
 import { auth, db } from "../../config/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addDoc, doc, getDoc, getDocs, collection, setDoc, where, query } from "firebase/firestore";
 export const signup = createAsyncThunk(
@@ -43,6 +43,39 @@ export const login = createAsyncThunk(
         }
     }
 )
+export const fetchCurrentUser = () => (dispatch) => {
+    dispatch(setLoading(true));
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        if (user) {
+
+            const docSnap = await getDoc(doc(db, "users", user.uid));
+            if (!docSnap.exists()) {
+                console.log("No such document!");
+                return;
+            }
+            dispatch(setUser({
+                ...docSnap.data(),
+            }));
+        } else {
+            console.log("User is signed out", user);
+            dispatch(logout());
+        }
+    });
+    return unsubscribe;
+
+}
+export const doLogout = createAsyncThunk(
+    "auth/logout",
+    async (userData, { rejectWithValue }) => {
+        try {
+            await auth.signOut();
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+)
+
+
 export const authSlice = createSlice({
     name: "auth",
     initialState: {
@@ -50,6 +83,21 @@ export const authSlice = createSlice({
         isloading: false,
         isAuthenticated: false,
         error: null
+    },
+     reducers: {
+        setLoading: (state, action) => {
+            state.isLoading = action.payload;
+        },
+        setUser: (state, action) => {
+            state.user = action.payload;
+            state.isAuthenticated = true;
+            state.isLoading = false;
+        },
+        logout: (state) => {
+            state.user = null;
+            state.isAuthenticated = false;
+            state.isLoading = false;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -80,3 +128,5 @@ export const authSlice = createSlice({
             })
     }
 })
+export default authSlice.reducer;
+export const { setUser, logout, setLoading } = authSlice.actions;
