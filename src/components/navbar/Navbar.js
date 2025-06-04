@@ -6,23 +6,25 @@ export default function Navbar() {
  const user = useSelector(state => state.auth?.user)
 console.log("user",user)
   return (
-    <div>
+    <div className='bg-gray-800 p-4 text-white shadow-md'>
       {
         user?.role==="admin"&&(
-          <>
-          <h1>Admin Panel</h1>
-          <Link to="/admin/home">Home</Link>
-          <Link to="/admin/products">Products</Link>
-          </>
+          <div className='container mx-auto flex items-center justify-between '>
+          <h1 className='text-xl font-bold '>Admin Panel</h1>
+          <Link to="/admin/home" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Home</Link>
+          <Link to="/admin/products" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Products</Link>
+          <Link to="/admin/orders" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Orders</Link>
+          <Link to="message" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Messages</Link>
+          </div>
         )
       }
       {user?.role === 'user' && (
-          <>
-          <h1>User Dashboard</h1>
-            <Link to="/user/home">Home</Link>
-            <Link to="/user/about">About</Link>
-            <Link to="/user/shop">Shop</Link>
-          </>
+          <div className='container mx-auto flex items-center justify-between '>
+          <h1 className='text-xl font-bold'>User Dashboard</h1>
+            <Link to="/user/home" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Home</Link>
+            <Link to="/user/card" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Card</Link>
+            <Link to="/user/search" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Search</Link>
+          </div>
         )}
     </div>
   )
