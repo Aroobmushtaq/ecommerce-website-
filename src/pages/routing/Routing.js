@@ -2,9 +2,8 @@ import React from 'react'
 import { Route, Routes, BrowserRouter, useLocation } from 'react-router-dom'
 import Login from '../login/Login'
 import Signup from '../signup/Signup'
-import Admin_dashboard from '../adminDashboard/Admin_dashboard'
-import User_Dashboard from '../userDashboard/User_Dashboard'
 import Navbar from '../../components/navbar/Navbar'
+import AdminProducts from '../adminDashboard/AdminProducts'
 
 function AppRoutes() {
   const location = useLocation();
@@ -17,8 +16,7 @@ function AppRoutes() {
       <Routes>
         <Route path='/' element={<Signup />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/admin' element={<Admin_dashboard />} />
-        <Route path='/user' element={<User_Dashboard />} />
+        <Route path='/admin/products' element={<AdminProducts />} />
       </Routes>
     </div>
   )

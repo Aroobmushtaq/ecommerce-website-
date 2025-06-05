@@ -1,6 +1,6 @@
 import React from 'react'
 
-function User_Dashboard() {
+function UserHome() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function User_Dashboard() {
   )
 }
 
-export default User_Dashboard
+export default UserHome
