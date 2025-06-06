@@ -1,7 +1,6 @@
 import {createAsyncThunk,createSlice } from "@reduxjs/toolkit";
 import { addDoc, collection } from "firebase/firestore";
 import {db} from "../../config/firebase"
-import { buildQueries } from "@testing-library/dom";
 export const addProduct=createAsyncThunk(
     'products/add',
     async(productData,{rejectWithValue})=>{
