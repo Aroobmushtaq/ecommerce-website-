@@ -7,15 +7,15 @@ import AdminProducts from '../adminDashboard/AdminProducts'
 
 function AppRoutes() {
   const location = useLocation();
-  const hideNavbarPaths = ['/', '/login'];
+  const hideNavbarPaths = ['/', '/signup'];
   const shouldHideNavbar = hideNavbarPaths.includes(location.pathname);
 
   return (
     <div>
       {!shouldHideNavbar && <Navbar />}
       <Routes>
-        <Route path='/' element={<Signup />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/' element={<Login />} />
         <Route path='/admin/products' element={<AdminProducts />} />
       </Routes>
     </div>
