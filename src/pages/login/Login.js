@@ -33,7 +33,7 @@ export default function Login() {
         <input type='text' name='email' placeholder='Enter Email' value={data.email} onChange={handleChange} className='bg-gray-50 border rounded w-full p-2 mb-3' required />
         <label className='block mb-2'>Password</label>
         <input type='password' name='password' placeholder='Enter Password' value={data.password} onChange={handleChange} className='bg-gray-50 border rounded w-full p-2 mb-3' required />
-        <button className='bg-green-400 w-full mt-3 rounded p-2 text-white hover:bg-green-300'>Login</button>
+        <button className='bg-gray-900 w-full mt-3 rounded p-2 text-white hover:bg-gray-600'>Login</button>
         <p className='text-center mt-3'>Don't have an account <Link to="/signup" className='text-blue-600'>Signup Now </Link></p>
       </form>
     </div>

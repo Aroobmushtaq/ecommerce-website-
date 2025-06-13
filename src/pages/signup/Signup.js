@@ -74,7 +74,7 @@ export default function Signup() {
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
-        <button className='bg-green-400 w-full mt-3 rounded p-2 text-white hover:bg-green-300'>Submit</button>
+        <button className='bg-gray-900 w-full mt-3 rounded p-2 text-white hover:bg-gray-600'>Submit</button>
         <p className='text-center mt-3 '>Already have an account <Link to="/" className='text-blue-600'>Login Now</Link></p>
       </form>
     </div>
