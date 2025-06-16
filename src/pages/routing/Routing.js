@@ -33,7 +33,7 @@ function AppRoutes() {
         <Route path='/user/cart' element={<CartPage />} />
         <Route path='/admin/message' element={< AdminMessages/>} />
         <Route path='/admin/order' element={< AdminOrdersPage/>} />
-        <Route path='/admin/home' element={< AdminHome/>} />
+        <Route path='/admin' element={< AdminHome/>} />
       </Routes>
     </div>
   )

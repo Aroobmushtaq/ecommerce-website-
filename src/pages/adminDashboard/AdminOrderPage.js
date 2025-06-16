@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders, deleteOrder } from "../../store/slices/orderSlice";
+import toast from "react-hot-toast";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // required styling
 const AdminOrdersPage = () => {
   const dispatch = useDispatch();
   const { orders, loading } = useSelector((state) => state.orders);
@@ -9,13 +12,35 @@ const AdminOrdersPage = () => {
     dispatch(getAllOrders());
   }, [dispatch]);
 
+  // const handleDelete = (id) => {
+  //   const confirmDelete = window.confirm("Are you sure you want to delete this order?");
+  //   if (confirmDelete) {
+  //     dispatch(deleteOrder(id));
+  //   }
+  // };
   const handleDelete = (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this order?");
-    if (confirmDelete) {
-      dispatch(deleteOrder(id));
-    }
-  };
+  confirmAlert({
+    title: 'Confirm Deletion',
+    message: 'Are you sure you want to delete this order?',
+    buttons: [
+      {
+        label: 'Yes',
+        onClick: () => {
+          dispatch(deleteOrder(id));
+          toast.success('Order deleted successfully!');
+        }
+      },
+      {
+        label: 'No',
+        onClick: () => {
+          // No error will occur, just cancel
+          toast.error("Order deletion canceled.");
 
+        }
+      }
+    ]
+  });
+};
   return (
     <div className="p-6">
       <h2 className="text-3xl font-bold text-center mb-6">All Orders</h2>

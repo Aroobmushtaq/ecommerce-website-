@@ -20,7 +20,7 @@ export default function Navbar() {
           <div className='container mx-auto flex items-center justify-between '>
             <h1 className='text-xl font-bold'>Admin Panel</h1>
             <div className="flex items-center gap-4">
-              <Link to="/admin/home" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Home</Link>
+              <Link to="/admin" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Home</Link>
               <Link to="/admin/products" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Products</Link>
               <Link to="/admin/order" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Orders</Link>
               <Link to="/admin/message" className='hover:bg-gray-700 px-3 py-2 rounded-md transition'>Messages</Link>
